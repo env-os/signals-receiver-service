@@ -1,0 +1,25 @@
+{
+  "name": "signals-receiver-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastianoverdolini/signals-receiver-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sebastianoverdolini/signals-receiver-service/issues"
+  },
+  "homepage": "https://github.com/sebastianoverdolini/signals-receiver-service#readme",
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "express": "^4.16.4",
+    "typescript": "^3.4.5"
+  }
+}
