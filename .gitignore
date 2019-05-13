@@ -1,3 +1,7 @@
+.vscode
+ormconfig.json
+db
+
 # Logs
 logs
 *.log
