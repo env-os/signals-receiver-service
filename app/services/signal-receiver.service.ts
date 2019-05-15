@@ -2,6 +2,7 @@ import { Service } from 'typedi'
 import { InjectRepository } from 'typeorm-typedi-extensions'
 import { Signal } from '../entities/signal.entity';
 import { SignalRepository } from '../repositories/signal.repository';
+import { Place } from '../entities/place.entity';
 
 @Service()
 export class SignalReceiverService {
@@ -16,6 +17,10 @@ export class SignalReceiverService {
             messageJSON['deviceId'],
             messageJSON['data'],
             messageJSON['sendDateTime'],
+            new Place(
+                messageJSON['latitude'],
+                messageJSON['longitude'],
+            )
         )
     }
 
