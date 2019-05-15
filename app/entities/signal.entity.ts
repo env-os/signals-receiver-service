@@ -17,7 +17,9 @@ export class Signal {
     @CreateDateColumn({ type: 'date' })
     sendDateTime: Date;
 
-    @OneToOne(type => Place)
+    @OneToOne(type => Place, {
+        cascade: true,
+    })
     @JoinColumn()
     place: Place;
 
