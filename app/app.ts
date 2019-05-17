@@ -3,13 +3,15 @@ import express from 'express'
 import mqtt from 'mqtt';
 import { useContainer, createConnection } from 'typeorm';
 import { Container } from 'typedi';
-import { SignalReceiverService } from './services/signal-receiver.service';
+import { SignalReceiverService } from './services/signals-storage.service';
 
 
 useContainer(Container)
 
 const app: express.Application = express()
-const brokerUrl = process.env.BROKER_URL || 'mqtt://localhost';
+const brokerUrl = process.env.BROKER_URL || 'mqtt://localhost:1883';
+const username = process.env.USERNAME || '';
+const password = process.env.PASSWORD || ''
 const topic = process.env.TOPIC || 'general';
 const port = process.env.PORT || 3000;
 
@@ -17,7 +19,10 @@ createConnection()
 .then(async connection => {
     console.log("Database connection started successfully");
 
-    const client = mqtt.connect(brokerUrl)
+    const client = mqtt.connect(brokerUrl, {
+        username: username,
+        password: password,
+    })
     client.on('connect', () => {
         client.subscribe(topic);
     })
