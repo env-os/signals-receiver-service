@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToOne, JoinColumn } from 'typeorm'
-import { Place } from './place.entity';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm'
 
 
 @Entity('Signals')
@@ -11,22 +10,29 @@ export class Signal {
     @Column()
     deviceId: number;
 
-    @Column()
+    @Column({
+        type: "float"
+    })
     data: number;
 
     @CreateDateColumn({ type: 'date' })
     sendDateTime: Date;
 
-    @OneToOne(type => Place, {
-        cascade: true,
+    @Column({
+        type: "float"
     })
-    @JoinColumn()
-    place: Place;
+    latitude: number;
 
-    constructor(deviceId: number, data: number, sendDateTime: Date, place: Place){
+    @Column({
+        type: "float"
+    })
+    longitude: number;
+
+    constructor(deviceId: number, data: number, sendDateTime: Date, latitude: number, longitude: number){
         this.deviceId = deviceId;
         this.data = data;
         this.sendDateTime = sendDateTime;
-        this.place = place;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 }
