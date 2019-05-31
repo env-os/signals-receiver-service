@@ -25,12 +25,7 @@ npm install
 
 1. Install PostgreSQL and configure it
 
-2. Install npm project dependecies
-
-```
-npm install
-```
-3. Set environments variables
+2. Set environments variables
 ```
 BROKER_URL // the url of the mqtt broker
 USERNAME // the username register in the mqtt broker
@@ -46,11 +41,11 @@ TYPEORM_PORT = // port of database
 TYPEORM_SYNCHRONIZE = true
 TYPEORM_USERNAME = // username of database
 ```
-4. Compile Typescript
+3. Compile Typescript
 ```
 npm run tsc
 ```
-5. Run micro-service
+4. Run micro-service
 ```
 node build/app.js
 ```
