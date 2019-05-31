@@ -3,7 +3,7 @@ import express from 'express'
 import mqtt from 'mqtt';
 import { useContainer, createConnection } from 'typeorm';
 import { Container } from 'typedi';
-import { SignalReceiverService } from './services/signals-storage.service';
+import { SignalsReceiverService } from './services/signals-receiver.service';
 
 
 useContainer(Container)
@@ -22,19 +22,24 @@ createConnection()
     const client = mqtt.connect(brokerUrl, {
         username: username,
         password: password,
+        protocol: "mqtt"
     })
     client.on('connect', () => {
+        console.log("Connection to MQTT broker established.")
         client.subscribe(topic);
+        console.log("Subscribed to topic " + topic)
     })
 
-    const receiverService = Container.get(SignalReceiverService);
+    const receiverService = Container.get(SignalsReceiverService);
 
     client.on('message', (topic, message) => {
+        console.log("Received MQTT message with topic " + topic.toString());
+        console.log(message.toString());
         receiverService.save(message);
     })
 
     app.listen(port, () => {
-        console.log("Signal receiver service listening on port " + port);
+        console.log("Signals receiver service listening on port " + port);
     })
 })
 .catch(error => console.log(error))
