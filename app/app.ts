@@ -24,12 +24,16 @@ createConnection()
         password: password,
     })
     client.on('connect', () => {
+        console.log("Connection to MQTT broker established.")
         client.subscribe(topic);
+        console.log("Subscribed to topic " + topic)
     })
 
     const receiverService = Container.get(SignalReceiverService);
 
     client.on('message', (topic, message) => {
+        console.log("Received MQTT message with topic " + topic.toString());
+        console.log(message.toString());
         receiverService.save(message);
     })
 
