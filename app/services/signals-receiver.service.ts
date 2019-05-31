@@ -1,13 +1,13 @@
 import { Service } from 'typedi'
 import { InjectRepository } from 'typeorm-typedi-extensions'
 import { Signal } from '../entities/signal.entity';
-import { SignalRepository } from '../repositories/signal.repository';
+import { SignalsRepository } from '../repositories/signals.repository';
 
 @Service()
-export class SignalReceiverService {
+export class SignalsReceiverService {
     constructor(
         @InjectRepository()
-        private readonly signals: SignalRepository,
+        private readonly signals: SignalsRepository,
     ) {}
 
     private async getJsonByBuffer(message: Buffer): Promise<JSON>{

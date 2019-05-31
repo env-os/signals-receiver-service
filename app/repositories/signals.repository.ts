@@ -3,6 +3,6 @@ import { Signal } from '../entities/signal.entity';
 
 
 @EntityRepository(Signal)
-export class SignalRepository extends Repository<Signal> {
+export class SignalsRepository extends Repository<Signal> {
     
 }
